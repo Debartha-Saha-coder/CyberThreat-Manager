@@ -14,7 +14,7 @@ function AppLayout() {
   return (
     <div className="flex min-h-screen">
       <Sidebar />
-      <main className="flex-1 p-6 overflow-auto">
+      <main className="flex-1 min-w-0 p-6 pl-5 overflow-auto">
         <Outlet />
       </main>
     </div>

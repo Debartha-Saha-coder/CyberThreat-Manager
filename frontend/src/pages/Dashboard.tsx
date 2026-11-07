@@ -71,8 +71,10 @@ export default function Dashboard() {
                 <XAxis dataKey="classification" tick={{ fill: '#6b7280', fontSize: 11 }} />
                 <YAxis tick={{ fill: '#6b7280', fontSize: 11 }} />
                 <Tooltip
+                  cursor={false}
                   contentStyle={{ backgroundColor: '#0d1224', border: '1px solid #1e2640', borderRadius: 8 }}
                   labelStyle={{ color: '#e5e7eb' }}
+                  itemStyle={{ color: '#e5e7eb' }}
                 />
                 <Bar dataKey="count" radius={[4, 4, 0, 0]}>
                   {stats.risk_distribution.map((_, i) => (

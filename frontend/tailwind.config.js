@@ -23,6 +23,7 @@ export default {
       },
       fontFamily: {
         sans: ['-apple-system', 'Segoe UI', 'system-ui', 'sans-serif'],
+        display: ['Oswald', 'sans-serif'],
         mono: ['JetBrains Mono', 'Fira Code', 'monospace'],
       },
     },
