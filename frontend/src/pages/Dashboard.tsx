@@ -90,14 +90,30 @@ export default function Dashboard() {
           {stats.total_scans === 0 ? (
             <div className="h-48 flex items-center justify-center text-gray-500 text-sm">No scan data yet.</div>
           ) : (
-            <ResponsiveContainer width="100%" height={200}>
-              <PieChart>
-                <Pie data={pieData} cx="50%" cy="50%" outerRadius={80} dataKey="value" label={({ name, percent }) => `${name} ${(percent * 100).toFixed(0)}%`} labelLine={false}>
-                  {pieData.map((_, i) => <Cell key={i} fill={PIE_COLORS[i % PIE_COLORS.length]} />)}
-                </Pie>
-                <Tooltip contentStyle={{ backgroundColor: '#0d1224', border: '1px solid #1e2640', borderRadius: 8 }} />
-              </PieChart>
-            </ResponsiveContainer>
+            <div>
+              <ResponsiveContainer width="100%" height={160}>
+                <PieChart>
+                  <Pie data={pieData} cx="50%" cy="50%" outerRadius={64} dataKey="value">
+                    {pieData.map((_, i) => <Cell key={i} fill={PIE_COLORS[i % PIE_COLORS.length]} />)}
+                  </Pie>
+                  <Tooltip contentStyle={{ backgroundColor: '#0d1224', border: '1px solid #1e2640', borderRadius: 8 }} />
+                </PieChart>
+              </ResponsiveContainer>
+              <div className="grid grid-cols-2 gap-x-4 gap-y-2 mt-2 text-xs">
+                {pieData.map((item, i) => {
+                  const percent = stats.total_scans > 0 ? (item.value / stats.total_scans) * 100 : 0
+                  return (
+                    <div key={item.name} className="flex items-center justify-between gap-2 min-w-0">
+                      <span className="flex items-center gap-2 min-w-0 text-gray-400">
+                        <span className="w-2.5 h-2.5 rounded-sm flex-shrink-0" style={{ backgroundColor: PIE_COLORS[i % PIE_COLORS.length] }} />
+                        <span className="truncate">{item.name}</span>
+                      </span>
+                      <span className="font-medium text-gray-200 flex-shrink-0">{percent.toFixed(0)}%</span>
+                    </div>
+                  )
+                })}
+              </div>
+            </div>
           )}
         </div>
       </div>
