@@ -1,0 +1,7 @@
+__pycache__/
+*.py[cod]
+*.db-shm
+*.db-wal
+.env
+node_modules/
+dist/
