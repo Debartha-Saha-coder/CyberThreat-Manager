@@ -89,12 +89,19 @@ async def lifespan(application):  # noqa: ANN001
     db = SessionLocal()
     try:
         ensure_admin_exists(db)
+        from app.services.seed_data import seed_threat_campaigns, seed_community_reports
+        seeded = seed_threat_campaigns(db)
+        if seeded:
+            logger.info("Seeded %d threat campaign records.", seeded)
+        seeded_reports = seed_community_reports(db)
+        if seeded_reports:
+            logger.info("Seeded %d community report records.", seeded_reports)
     except Exception as exc:
-        logger.warning("Admin bootstrap failed (may already exist): %s", exc)
+        logger.warning("Database bootstrap failed: %s", exc)
     finally:
         db.close()
 
-    logger.info("Database ready. Admin account ensured.")
+    logger.info("Database ready. Admin account and campaign data ensured.")
     yield
     logger.info("Hackmetrix shutting down.")
 
