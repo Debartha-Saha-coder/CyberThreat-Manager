@@ -1,6 +1,6 @@
 import React, { useState, useRef } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { Search, Shield, AlertCircle, CheckCircle, Loader2, Globe } from 'lucide-react'
+import { Search, Shield, AlertCircle, CheckCircle, Loader2 } from 'lucide-react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { scanService } from '../services'
 import type { ScanListItem } from '../types'
@@ -64,12 +64,11 @@ export default function Scanner() {
         <form onSubmit={handleSubmit} className="space-y-4">
           <label className="block text-sm font-medium text-gray-300">Target URL</label>
           <div className="flex gap-3">
-            <div className="relative flex-1">
-              <Globe size={16} className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-500" />
+            <div className="flex-1">
               <input
                 ref={inputRef}
                 type="text"
-                className="input-field pl-9"
+                className="input-field"
                 placeholder="https://example.com/path"
                 value={url}
                 onChange={(e) => setUrl(e.target.value)}
