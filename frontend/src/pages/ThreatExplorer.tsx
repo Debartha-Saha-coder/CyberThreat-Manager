@@ -14,7 +14,7 @@ export default function ThreatExplorer() {
   }, [])
 
   return (
-    <div className="space-y-6 max-w-4xl">
+    <div className="space-y-6 max-w-5xl">
       <div>
         <h1 className="text-2xl font-bold text-white">Threat Explorer</h1>
         <p className="text-gray-400 text-sm mt-1">Known threat campaigns and indicators of compromise.</p>

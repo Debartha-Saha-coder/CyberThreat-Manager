@@ -12,9 +12,9 @@ import { authService } from './services'
 
 function AppLayout() {
   return (
-    <div className="flex min-h-screen">
+    <div className="app-shell">
       <Sidebar />
-      <main className="flex-1 min-w-0 p-6 pl-5 overflow-auto">
+      <main className="app-main">
         <Outlet />
       </main>
     </div>

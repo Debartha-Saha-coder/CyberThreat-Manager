@@ -51,7 +51,7 @@ export default function Scanner() {
   }
 
   return (
-    <div className="max-w-2xl mx-auto space-y-6">
+    <div className="max-w-5xl mx-auto space-y-6">
       <div>
         <h1 className="text-2xl font-bold text-white">Website Scanner</h1>
         <p className="text-gray-400 text-sm mt-1">
@@ -60,7 +60,7 @@ export default function Scanner() {
       </div>
 
       {/* Input form */}
-      <div className="card p-6">
+      <div className="card p-6 md:p-8">
         <form onSubmit={handleSubmit} className="space-y-4">
           <label className="block text-sm font-medium text-gray-300">Target URL</label>
           <div className="flex gap-3">

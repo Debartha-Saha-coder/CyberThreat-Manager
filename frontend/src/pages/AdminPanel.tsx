@@ -18,7 +18,7 @@ export default function AdminPanel() {
   }, [])
 
   return (
-    <div className="space-y-6 max-w-4xl">
+    <div className="space-y-6 max-w-5xl">
       <div>
         <h1 className="text-2xl font-bold text-white">Admin Panel</h1>
         <p className="text-gray-400 text-sm mt-1">Platform administration — requires Admin role.</p>
