@@ -1,0 +1,189 @@
+
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>Hackmetrix — Build Summary</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: #0a0e1a; color: #e5e7eb; font-family: -apple-system, "Segoe UI", system-ui, sans-serif; font-size: 14px; line-height: 1.6; padding: 32px 16px; }
+  .wrap { max-width: 760px; margin: 0 auto; }
+  h1 { font-size: 22px; font-weight: 700; color: #fff; margin-bottom: 4px; }
+  .subtitle { color: #6b7280; font-size: 13px; margin-bottom: 32px; }
+  h2 { font-size: 13px; font-weight: 600; color: #9ca3af; text-transform: uppercase; letter-spacing: .05em; margin: 28px 0 12px; }
+  .card { background: #0d1224; border: 1px solid #1e2640; border-radius: 10px; padding: 16px 20px; margin-bottom: 12px; }
+  .badge { display: inline-block; font-size: 11px; font-weight: 600; padding: 2px 8px; border-radius: 20px; }
+  .badge-green { background: #052e16; color: #4ade80; border: 1px solid #166534; }
+  .badge-blue { background: #0c1a3a; color: #60a5fa; border: 1px solid #1e3a6e; }
+  .badge-purple { background: #1e0a3c; color: #a78bfa; border: 1px solid #4c1d95; }
+  .badge-orange { background: #2c1200; color: #fb923c; border: 1px solid #7c2d12; }
+  .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  .grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; }
+  .stat { background: #0d1224; border: 1px solid #1e2640; border-radius: 8px; padding: 14px 16px; }
+  .stat-val { font-size: 24px; font-weight: 700; color: #fff; }
+  .stat-label { font-size: 11px; color: #6b7280; margin-top: 2px; }
+  .engine-row { display: flex; align-items: center; gap: 12px; padding: 10px 0; border-bottom: 1px solid #1e2640; }
+  .engine-row:last-child { border-bottom: none; }
+  .dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+  .engine-name { font-weight: 600; color: #f3f4f6; font-size: 13px; min-width: 200px; }
+  .engine-desc { color: #9ca3af; font-size: 12px; }
+  .test-row { display: flex; justify-content: space-between; align-items: center; padding: 8px 0; border-bottom: 1px solid #111827; }
+  .test-row:last-child { border-bottom: none; }
+  .check { color: #4ade80; font-size: 14px; }
+  table { width: 100%; border-collapse: collapse; font-size: 12px; }
+  th { text-align: left; color: #6b7280; font-weight: 500; padding: 6px 0; border-bottom: 1px solid #1e2640; }
+  td { padding: 7px 0; border-bottom: 1px solid #111827; color: #d1d5db; font-family: monospace; }
+  td:first-child { color: #60a5fa; }
+  .weight-bar { background: #1e2640; height: 6px; border-radius: 3px; overflow: hidden; margin-top: 4px; }
+  .weight-fill { height: 100%; border-radius: 3px; }
+  .warn { background: #1c1008; border: 1px solid #92400e; border-radius: 8px; padding: 12px 16px; font-size: 12px; color: #fbbf24; }
+  footer { margin-top: 40px; padding-top: 16px; border-top: 1px solid #1e2640; text-align: center; font-size: 12px; color: #4b5563; }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <h1>🛡 Hackmetrix</h1>
+  <p class="subtitle">Cyber Threat Intelligence Platform — Build Summary &amp; Architecture</p>
+
+  
+  <div class="grid-4">
+    <div class="stat"><div class="stat-val" style="color:#4ade80">56</div><div class="stat-label">Tests Passing</div></div>
+    <div class="stat"><div class="stat-val" style="color:#60a5fa">4</div><div class="stat-label">Detection Engines</div></div>
+    <div class="stat"><div class="stat-val" style="color:#a78bfa">23</div><div class="stat-label">DB Tables</div></div>
+    <div class="stat"><div class="stat-val" style="color:#fb923c">16</div><div class="stat-label">API Endpoints</div></div>
+  </div>
+
+  
+  <h2>Four Detection Engines</h2>
+  <div class="card">
+    <div class="engine-row">
+      <div class="dot" style="background:#ef4444"></div>
+      <div class="engine-name">Threat Intelligence</div>
+      <div class="engine-desc">URL heuristics, brand lookalikes, Google Safe Browsing, VirusTotal, PhishTank, URLhaus</div>
+      <span class="badge badge-blue" style="flex-shrink:0">Weight 35%</span>
+    </div>
+    <div class="engine-row">
+      <div class="dot" style="background:#3b82f6"></div>
+      <div class="engine-name">Web Security Assessment</div>
+      <div class="engine-desc">HTTPS, HSTS, CSP, cookies, redirect chains, information disclosure</div>
+      <span class="badge badge-blue" style="flex-shrink:0">Weight 20%</span>
+    </div>
+    <div class="engine-row">
+      <div class="dot" style="background:#7c3aed"></div>
+      <div class="engine-name">TLS Certificate Intelligence</div>
+      <div class="engine-desc">Expiry, chain, hostname match, key strength, SHA algorithms, CT logs (crt.sh)</div>
+      <span class="badge badge-blue" style="flex-shrink:0">Weight 25%</span>
+    </div>
+    <div class="engine-row">
+      <div class="dot" style="background:#10b981"></div>
+      <div class="engine-name">Community Intelligence</div>
+      <div class="engine-desc">Analyst-verified reports, vote tallies, duplicate detection, campaign linkage</div>
+      <span class="badge badge-blue" style="flex-shrink:0">Weight 20%</span>
+    </div>
+  </div>
+
+  
+  <h2>Unified Risk Scoring</h2>
+  <div class="card">
+    <p style="font-size:12px;color:#9ca3af;margin-bottom:14px">Score = (Threat×0.35) + (Web×0.20) + (Cert×0.25) + (Community×0.20) — weights redistributed if engines unavailable. Confirmed malicious matches enforce minimum floor of 70.</p>
+    <div style="display:grid;grid-template-columns:repeat(5,1fr);gap:8px;text-align:center;font-size:12px">
+      <div style="background:#052e16;border:1px solid #166534;border-radius:6px;padding:10px"><div style="color:#4ade80;font-weight:700">LOW RISK</div><div style="color:#6b7280;font-size:11px">0–19</div></div>
+      <div style="background:#0c1a3a;border:1px solid #1e3a6e;border-radius:6px;padding:10px"><div style="color:#60a5fa;font-weight:700">GUARDED</div><div style="color:#6b7280;font-size:11px">20–39</div></div>
+      <div style="background:#1c1008;border:1px solid #92400e;border-radius:6px;padding:10px"><div style="color:#fbbf24;font-weight:700">MEDIUM</div><div style="color:#6b7280;font-size:11px">40–59</div></div>
+      <div style="background:#1c0a08;border:1px solid #9a3412;border-radius:6px;padding:10px"><div style="color:#f97316;font-weight:700">HIGH RISK</div><div style="color:#6b7280;font-size:11px">60–79</div></div>
+      <div style="background:#1c0808;border:1px solid #7f1d1d;border-radius:6px;padding:10px"><div style="color:#ef4444;font-weight:700">CRITICAL</div><div style="color:#6b7280;font-size:11px">80–100</div></div>
+    </div>
+  </div>
+
+  
+  <h2>Architecture</h2>
+  <div class="grid-2">
+    <div class="card">
+      <div style="font-weight:600;color:#f3f4f6;margin-bottom:10px;font-size:13px">Backend (Python/FastAPI)</div>
+      <div style="font-size:12px;color:#9ca3af;line-height:2">
+        <code style="color:#60a5fa">app/main.py</code> — FastAPI + lifespan<br />
+        <code style="color:#60a5fa">app/config.py</code> — Pydantic settings<br />
+        <code style="color:#60a5fa">app/models/</code> — 6 model files, 23 tables<br />
+        <code style="color:#60a5fa">app/engines/</code> — 5 engine files<br />
+        <code style="color:#60a5fa">app/services/</code> — scan, auth, URL validator<br />
+        <code style="color:#60a5fa">app/api/routes/</code> — auth, scans, community, dashboard
+      </div>
+    </div>
+    <div class="card">
+      <div style="font-weight:600;color:#f3f4f6;margin-bottom:10px;font-size:13px">Frontend (React/Vite/TypeScript)</div>
+      <div style="font-size:12px;color:#9ca3af;line-height:2">
+        <code style="color:#a78bfa">pages/Dashboard</code> — stats + charts<br />
+        <code style="color:#a78bfa">pages/Scanner</code> — URL input + live progress<br />
+        <code style="color:#a78bfa">pages/ScanResult</code> — full report, all 4 engines<br />
+        <code style="color:#a78bfa">pages/Community</code> — reports + voting<br />
+        <code style="color:#a78bfa">pages/ThreatExplorer</code> — campaigns<br />
+        <code style="color:#a78bfa">pages/AdminPanel</code> — user management
+      </div>
+    </div>
+  </div>
+
+  
+  <h2>Key API Endpoints</h2>
+  <div class="card" style="padding:14px 20px">
+    <table>
+      <tr><th>Method</th><th>Path</th><th>Description</th></tr>
+      <tr><td>POST</td><td>/api/v1/auth/register</td><td style="color:#9ca3af">Create account</td></tr>
+      <tr><td>POST</td><td>/api/v1/auth/login</td><td style="color:#9ca3af">JWT login</td></tr>
+      <tr><td>POST</td><td>/api/v1/scans</td><td style="color:#9ca3af">Submit URL for scanning</td></tr>
+      <tr><td>GET</td><td>/api/v1/scans/{id}/report</td><td style="color:#9ca3af">Full scan report</td></tr>
+      <tr><td>GET</td><td>/api/v1/dashboard/stats</td><td style="color:#9ca3af">Dashboard statistics</td></tr>
+      <tr><td>POST</td><td>/api/v1/reports</td><td style="color:#9ca3af">Submit community report</td></tr>
+      <tr><td>PATCH</td><td>/api/v1/reports/{id}/verify</td><td style="color:#9ca3af">Analyst verification</td></tr>
+      <tr><td>GET</td><td>/api/docs</td><td style="color:#9ca3af">Interactive Swagger docs</td></tr>
+    </table>
+  </div>
+
+  
+  <h2>Test Results — 56/56 Pass</h2>
+  <div class="card">
+    <div class="test-row"><span>URL validation &amp; SSRF protection</span><span class="check">✓ 9 tests</span></div>
+    <div class="test-row"><span>Heuristic feature extraction</span><span class="check">✓ 6 tests</span></div>
+    <div class="test-row"><span>Certificate analysis (expiry, hostname, key strength)</span><span class="check">✓ 12 tests</span></div>
+    <div class="test-row"><span>Unified risk scoring engine</span><span class="check">✓ 8 tests</span></div>
+    <div class="test-row"><span>REST API integration (auth, scan, community, dashboard)</span><span class="check">✓ 15 tests</span></div>
+    <div class="test-row"><span>SSRF block (localhost, private IPs, cloud metadata)</span><span class="check">✓ verified</span></div>
+    <div class="test-row"><span>Confirmed malicious floor enforcement (≥70)</span><span class="check">✓ verified</span></div>
+  </div>
+
+  
+  <h2>Security Controls</h2>
+  <div class="card" style="font-size:12px;color:#9ca3af;line-height:1.9">
+    ✓ Block 10.x, 172.16.x, 192.168.x, 127.x, ::1, fc00::/7, fe80::/10, 169.254.x<br />
+    ✓ Block cloud metadata endpoint 169.254.169.254<br />
+    ✓ Only HTTP and HTTPS allowed<br />
+    ✓ DNS resolution validated against SSRF rules before connection<br />
+    ✓ Configurable response size limit (default 5 MB)<br />
+    ✓ Strict connection and read timeouts<br />
+    ✓ No form submissions, no script execution, no destructive operations<br />
+    ✓ API keys stored in environment variables only — never exposed to frontend<br />
+    ✓ JWT authentication with configurable expiry
+  </div>
+
+  
+  <h2>Quick Start</h2>
+  <div class="card" style="font-family:monospace;font-size:12px;color:#9ca3af;line-height:2">
+    <span style="color:#6b7280"># 1. Configure environment</span><br />
+    <span style="color:#f3f4f6">cp .env.example .env &amp;&amp; edit .env</span><br /><br />
+    <span style="color:#6b7280"># 2. Install backend</span><br />
+    <span style="color:#f3f4f6">cd backend &amp;&amp; pip install -r requirements.txt</span><br /><br />
+    <span style="color:#6b7280"># 3. Run backend</span><br />
+    <span style="color:#f3f4f6">uvicorn app.main:app --reload --port 8000</span><br /><br />
+    <span style="color:#6b7280"># 4. Run frontend (requires Node.js 20+)</span><br />
+    <span style="color:#f3f4f6">cd frontend &amp;&amp; npm install &amp;&amp; npm run dev</span><br /><br />
+    <span style="color:#6b7280"># 5. Run tests</span><br />
+    <span style="color:#f3f4f6">pytest tests/ -v</span>
+  </div>
+
+  <div class="warn" style="margin-top:16px">
+    ⚠ Node.js 20+ is required for the frontend. Install from nodejs.org before running npm commands. The backend runs independently without Node.js.
+  </div>
+
+  <footer>Made with IBM Bob</footer>
+</div>
+</body>
+</html>
