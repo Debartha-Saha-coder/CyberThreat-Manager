@@ -1,4 +1,4 @@
-// Shared TypeScript types for the Hackmetrix frontend
+// Shared TypeScript types for the THREXIS frontend
 
 export type RiskClassification =
   | 'LOW_RISK'

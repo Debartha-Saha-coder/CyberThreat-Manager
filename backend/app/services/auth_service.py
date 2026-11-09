@@ -88,6 +88,8 @@ def get_user_by_id(user_id: int, db: Session) -> Optional[User]:
 def ensure_admin_exists(db: Session) -> None:
     """Create the bootstrap admin user if it doesn't exist."""
     existing = db.query(User).filter(User.email == settings.admin_email).first()
+    if not existing:
+        existing = db.query(User).filter(User.username == "admin").first()
     if existing:
         return
     admin = User(

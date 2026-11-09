@@ -99,7 +99,7 @@ async def run_web_assessment(validated_url: URLValidationResult) -> WebAssessmen
             max_redirects=settings.max_redirects,
             timeout=settings.scan_timeout_seconds,
             verify=False,  # Certificate errors handled by cert engine
-            headers={"User-Agent": "Hackmetrix-Scanner/1.0"},
+            headers={"User-Agent": "THREXIS-Scanner/1.0"},
             limits=httpx.Limits(max_connections=1),
         ) as client:
             response = await client.get(

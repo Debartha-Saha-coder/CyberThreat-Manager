@@ -1,5 +1,5 @@
 {
-  "name": "cyber-threat-manager",
+  "name": "threxis",
   "private": true,
   "scripts": {
     "install:frontend": "npm --prefix frontend install",

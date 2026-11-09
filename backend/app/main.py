@@ -1,5 +1,5 @@
 """
-Hackmetrix — Cyber Threat Intelligence Platform
+THREXIS — Threat Intelligence Platform
 FastAPI application entry point.
 """
 
@@ -38,7 +38,7 @@ limiter = Limiter(key_func=get_remote_address)
 # Application
 # ------------------------------------------------------------------ #
 app = FastAPI(
-    title="Hackmetrix — Cyber Threat Intelligence Platform",
+    title="THREXIS — Threat Intelligence Platform",
     description=(
         "A unified, modular cybersecurity platform that detects phishing websites, "
         "malicious URLs, suspicious certificates, and web security weaknesses through "
@@ -81,7 +81,7 @@ from contextlib import asynccontextmanager
 
 @asynccontextmanager
 async def lifespan(application):  # noqa: ANN001
-    logger.info("Hackmetrix starting up...")
+    logger.info("THREXIS starting up...")
     create_tables()
 
     from app.database.connection import SessionLocal
@@ -103,20 +103,20 @@ async def lifespan(application):  # noqa: ANN001
 
     logger.info("Database ready. Admin account and campaign data ensured.")
     yield
-    logger.info("Hackmetrix shutting down.")
+    logger.info("THREXIS shutting down.")
 
 app.router.lifespan_context = lifespan
 
 
 @app.get("/api/health")
 def health_check():
-    return {"status": "ok", "service": "hackmetrix"}
+    return {"status": "ok", "service": "threxis"}
 
 
 @app.get("/")
 def root():
     return {
-        "service": "Hackmetrix Cyber Threat Intelligence Platform",
+        "service": "THREXIS Threat Intelligence Platform",
         "version": "1.0.0",
         "docs": "/api/docs",
     }

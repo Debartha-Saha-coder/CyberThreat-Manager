@@ -96,7 +96,7 @@ async def _check_google_safe_browsing(url: str, client: httpx.AsyncClient) -> Ad
 
     api_url = "https://safebrowsing.googleapis.com/v4/threatMatches:find"
     payload = {
-        "client": {"clientId": "hackmetrix", "clientVersion": "1.0"},
+        "client": {"clientId": "threxis", "clientVersion": "1.0"},
         "threatInfo": {
             "threatTypes": ["MALWARE", "SOCIAL_ENGINEERING", "UNWANTED_SOFTWARE", "POTENTIALLY_HARMFUL_APPLICATION"],
             "platformTypes": ["ANY_PLATFORM"],
@@ -227,7 +227,7 @@ async def _check_phishtank(url: str, client: httpx.AsyncClient) -> AdapterResult
         resp = await client.post(
             "https://checkurl.phishtank.com/checkurl/",
             data={"url": url, "format": "json", "app_key": settings.phishtank_api_key},
-            headers={"User-Agent": "hackmetrix/1.0"},
+            headers={"User-Agent": "threxis/1.0"},
             timeout=10,
         )
         resp.raise_for_status()

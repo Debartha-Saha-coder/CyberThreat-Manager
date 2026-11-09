@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { ShieldAlert, Loader2, AlertCircle } from 'lucide-react'
 import { authService } from '../services'
+import { BrandMark } from '../components/BrandMark'
 
 type Mode = 'login' | 'register'
 
@@ -34,70 +35,102 @@ export default function Auth() {
   }
 
   return (
-    <div className="min-h-screen bg-navy-900 flex items-center justify-center p-4">
-      <div className="w-full max-w-sm space-y-6">
-        {/* Logo */}
-        <div className="text-center">
-          <div className="w-14 h-14 rounded-2xl bg-blue-600 flex items-center justify-center mx-auto mb-4">
-            <ShieldAlert size={28} className="text-white" />
+    <main className="auth-shell">
+      <section className="auth-brand-panel" aria-label="THREXIS">
+        <div className="auth-brand-lockup">
+          <BrandMark className="auth-brand-mark" />
+          <div>
+            <p className="auth-wordmark">THRE<span className="brand-accent">X</span>IS</p>
+            <p className="auth-tagline">See the threat. Understand the risk.</p>
           </div>
-          <h1 className="text-2xl font-bold text-white">Hackmetrix</h1>
-          <p className="text-gray-400 text-sm mt-1">Cyber Threat Intelligence Platform</p>
         </div>
 
-        {/* Card */}
-        <div className="card p-6 space-y-4">
-          <div className="flex bg-navy-900 rounded-lg p-1">
+        <div className="auth-brand-message">
+          <p className="auth-kicker">Threat intelligence / 01</p>
+          <h2>See the threat.<br />Understand the risk.</h2>
+          <p className="auth-principles">Identify <span>·</span> Analyze <span>·</span> Understand <span>·</span> Protect</p>
+        </div>
+
+        <div className="auth-brand-footer">
+          <span><span className="status-dot" /> Intelligence for a safer digital world</span>
+          <span>THREXIS / 01</span>
+        </div>
+      </section>
+
+      <section className="auth-form-panel">
+        <div className="auth-form-card">
+          <p className="auth-eyebrow">Secure access</p>
+          <h1 className="auth-title">{mode === 'login' ? 'Welcome back' : 'Create your account'}</h1>
+          <p className="auth-intro">{mode === 'login' ? 'Sign in to your intelligence workspace.' : 'Set up an account to continue.'}</p>
+
+          <div className="auth-tabs" role="tablist" aria-label="Account access">
             {(['login', 'register'] as Mode[]).map((m) => (
-              <button key={m} onClick={() => setMode(m)} className={`flex-1 py-2 rounded-md text-sm font-medium transition-colors capitalize ${mode === m ? 'bg-blue-600 text-white' : 'text-gray-400 hover:text-gray-200'}`}>
-                {m}
+              <button
+                key={m}
+                type="button"
+                role="tab"
+                aria-selected={mode === m}
+                onClick={() => setMode(m)}
+                className={mode === m ? 'auth-tab active' : 'auth-tab'}
+              >
+                {m === 'login' ? 'Sign in' : 'Create account'}
               </button>
             ))}
           </div>
 
-          <form onSubmit={handleSubmit} className="space-y-3">
-            <input
-              type="email"
-              className="input-field"
-              placeholder="Email address"
-              value={form.email}
-              onChange={(e) => setForm((f) => ({ ...f, email: e.target.value }))}
-              required
-            />
-            {mode === 'register' && (
+          <form onSubmit={handleSubmit} className="auth-form">
+            <label className="auth-field">
+              <span>Email address</span>
               <input
-                type="text"
+                type="email"
                 className="input-field"
-                placeholder="Username"
-                value={form.username}
-                onChange={(e) => setForm((f) => ({ ...f, username: e.target.value }))}
+                autoComplete="email"
+                value={form.email}
+                onChange={(e) => setForm((f) => ({ ...f, email: e.target.value }))}
                 required
-                minLength={3}
               />
+            </label>
+            {mode === 'register' && (
+              <label className="auth-field">
+                <span>Username</span>
+                <input
+                  type="text"
+                  className="input-field"
+                  autoComplete="username"
+                  value={form.username}
+                  onChange={(e) => setForm((f) => ({ ...f, username: e.target.value }))}
+                  required
+                  minLength={3}
+                />
+              </label>
             )}
-            <input
-              type="password"
-              className="input-field"
-              placeholder="Password"
-              value={form.password}
-              onChange={(e) => setForm((f) => ({ ...f, password: e.target.value }))}
-              required
-              minLength={8}
-            />
+            <label className="auth-field">
+              <span>Password</span>
+              <input
+                type="password"
+                className="input-field"
+                autoComplete={mode === 'login' ? 'current-password' : 'new-password'}
+                value={form.password}
+                onChange={(e) => setForm((f) => ({ ...f, password: e.target.value }))}
+                required
+                minLength={8}
+              />
+            </label>
 
             {error && (
-              <div className="flex items-center gap-2 text-red-400 text-sm">
-                <AlertCircle size={14} />
+              <div className="auth-error" role="alert">
+                <AlertCircle size={15} />
                 {error}
               </div>
             )}
 
-            <button type="submit" className="btn-primary w-full justify-center" disabled={loading}>
-              {loading ? <><Loader2 size={16} className="animate-spin" />Processing…</> : mode === 'login' ? 'Sign In' : 'Create Account'}
+            <button type="submit" className="btn-primary auth-submit" disabled={loading}>
+              {loading ? <><Loader2 size={16} className="animate-spin" />Processing…</> : mode === 'login' ? 'Sign in' : 'Create account'}
             </button>
           </form>
+          <p className="auth-footnote"><ShieldAlert size={14} /> Protected analyst workspace</p>
         </div>
-      </div>
-    </div>
+      </section>
+    </main>
   )
 }

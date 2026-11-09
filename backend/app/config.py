@@ -1,5 +1,5 @@
 """
-Hackmetrix — Cyber Threat Intelligence Platform
+THREXIS — Threat Intelligence Platform
 Configuration module using Pydantic Settings.
 """
 
@@ -54,7 +54,7 @@ class Settings(BaseSettings):
     redis_url: str = "redis://localhost:6379/0"
 
     # Admin bootstrap
-    admin_email: str = "admin@hackmetrix.local"
+    admin_email: str = "admin@threxis.local"
     admin_password: str = "changeme"
 
     # ------------------------------------------------------------------ #

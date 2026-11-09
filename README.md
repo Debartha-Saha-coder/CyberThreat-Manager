@@ -1,13 +1,13 @@
-# Hackmetrix — Cyber Threat Intelligence Platform
+# THREXIS — Threat Intelligence Platform
 
-A unified, modular cybersecurity platform that detects phishing websites, malicious URLs, suspicious certificates, and web security weaknesses through four independent detection engines and collaborative community threat intelligence.
+See the threat. Understand the risk. THREXIS is a unified cybersecurity platform that detects phishing websites, malicious URLs, suspicious certificates, and web security weaknesses through four independent detection engines and collaborative community threat intelligence.
 
 ---
 
 ## Architecture Overview
 
 ```
-hackmetrix/
+threxis/
 ├── backend/                  # FastAPI Python backend
 │   ├── app/
 │   │   ├── main.py           # FastAPI entry point
@@ -209,7 +209,7 @@ Uses SQLite for development. PostgreSQL-compatible via `DATABASE_URL`.
 To migrate to PostgreSQL:
 ```bash
 # In .env:
-DATABASE_URL=postgresql://user:password@localhost:5432/hackmetrix
+DATABASE_URL=postgresql://user:password@localhost:5432/threxis
 ```
 
 ---

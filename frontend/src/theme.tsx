@@ -11,14 +11,14 @@ const ThemeContext = createContext<ThemeContextValue | null>(null)
 
 export function ThemeProvider({ children }: { children: React.ReactNode }) {
   const [theme, setTheme] = useState<Theme>(() => {
-    const saved = localStorage.getItem('secureScan_theme')
-    return saved === 'light' || saved === 'dark' ? saved : 'dark'
+    const saved = localStorage.getItem('threxis_theme')
+    return saved === 'light' || saved === 'dark' ? saved : 'light'
   })
 
   useEffect(() => {
     document.documentElement.dataset.theme = theme
     document.documentElement.style.colorScheme = theme
-    localStorage.setItem('secureScan_theme', theme)
+    localStorage.setItem('threxis_theme', theme)
   }, [theme])
 
   return (

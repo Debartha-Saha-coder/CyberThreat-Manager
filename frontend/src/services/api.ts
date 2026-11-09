@@ -7,7 +7,7 @@ const api = axios.create({
 
 // Attach JWT token from localStorage if present
 api.interceptors.request.use((config) => {
-  const token = localStorage.getItem('hackmetrix_token')
+  const token = localStorage.getItem('threxis_token') || localStorage.getItem('hackmetrix_token')
   if (token) {
     config.headers.Authorization = `Bearer ${token}`
   }
@@ -21,6 +21,8 @@ api.interceptors.response.use(
     if (error.response?.status === 401) {
       localStorage.removeItem('hackmetrix_token')
       localStorage.removeItem('hackmetrix_user')
+      localStorage.removeItem('threxis_token')
+      localStorage.removeItem('threxis_user')
     }
     return Promise.reject(error)
   },

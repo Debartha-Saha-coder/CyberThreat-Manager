@@ -1,8 +1,9 @@
 import React from 'react'
 import { NavLink, useNavigate } from 'react-router-dom'
-import { LayoutDashboard, Search, Shield, Users, Settings, LogOut, ShieldAlert, Moon, Sun } from 'lucide-react'
+import { LayoutDashboard, Search, Shield, Users, Settings, LogOut, Moon, Sun } from 'lucide-react'
 import { authService } from '../services'
 import { useTheme } from '../theme'
+import { BrandMark } from './BrandMark'
 
 const navItems = [
   { to: '/', label: 'Dashboard', icon: LayoutDashboard },
@@ -24,9 +25,9 @@ export function Sidebar() {
 
   return (
     <header className="site-header">
-      <NavLink to="/" className="brand" aria-label="SecureScan dashboard">
-        <span className="brand-mark"><ShieldAlert size={18} /></span>
-        <span>SecureScan</span>
+      <NavLink to="/" className="brand" aria-label="THREXIS dashboard">
+        <span className="brand-mark"><BrandMark /></span>
+        <span className="brand-wordmark">THRE<span className="brand-accent">X</span>IS</span>
       </NavLink>
 
       <nav className="top-nav" aria-label="Primary navigation">
